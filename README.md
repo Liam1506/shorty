@@ -36,3 +36,5 @@ To create a new short link / redirect page:
 4. Click **Submit new issue**.
 
 The GitHub Action will automatically run, create the new folder with an `index.html` file, and commit the changes directly to your repository!
+
+Try: <https://liam1506.github.io/shorty/>
