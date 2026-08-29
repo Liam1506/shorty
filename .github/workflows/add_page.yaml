@@ -6,11 +6,11 @@ on:
 
 jobs:
   process-issue:
-    if: github.actor == 'Liam1506'
+    if: github.actor == github.repository_owner
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write # Grants write access to commit files back
+      contents: write
 
     steps:
       - name: Checkout repo
@@ -21,14 +21,16 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Run script with issue data
+      - name: Run script with positional args
         env:
-          ISSUE_TITLE: ${{ github.event.issue.title }}
-        run: python add_page.py "$ISSUE_TITLE"
+          TITLE: ${{ github.event.issue.title }}
+          BODY: ${{ github.event.issue.body }}
+        run: |
+          python add_page.py "$TITLE" "$BODY"
 
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-generated page from issue: ${{ github.event.issue.title }}" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-generated page" && git push)
