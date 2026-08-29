@@ -20,4 +20,4 @@ jobs:
       - name: Run script with issue data
         env:
           ISSUE_TITLE: ${{ github.event.issue.title }}
-        run: python main.py "$ISSUE_TITLE"
+        run: python addUrl.py "$ISSUE_TITLE"
