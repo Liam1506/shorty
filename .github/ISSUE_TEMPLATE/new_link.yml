@@ -3,17 +3,9 @@ description: Add a new redirect page
 labels: ["short-link"]
 body:
   - type: input
-    id: short_code
-    attributes:
-      label: Short Code
-      placeholder: "e.g., test2"
-    validations:
-      required: true
-
-  - type: input
     id: target_url
     attributes:
-      label: Target URL
+      label: "Target URL"
       placeholder: "https://example.com/destination"
     validations:
       required: true
