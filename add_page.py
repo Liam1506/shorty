@@ -12,7 +12,7 @@ def add_page(path: str, target: str):
     html = html.replace("{target}", target)
     
     p.mkdir(parents=True, exist_ok=True)
-    file_path = p / "index.html"
+    file_path = p / "template.html"
     
     with open(file_path, "w") as f:
         f.write(html)
