@@ -15,13 +15,24 @@ For GitHub Actions to create and commit new files to your repository, you must e
 
 ### 2. File Structure
 
-Ensure your repository matches the following structure (pay close attention to the plural `.github/workflows` folder):
-
 ```text
 ├── .github/
 │   └── workflows/
 │       └── new_issue.yml    # Workflow config file
 ├── index.html                # Base template file
-├── addUrl.py                 # Python script to handle generation
+├── addUrl.py                  # Python script to handle generation
 └── README.md
 ```
+
+### 3. Add a Website
+
+To create a new short link / redirect page:
+
+1. Click the **Issues** tab at the top of the repository.
+2. Click **New Issue** (or select the **Create New Short Link** template).
+3. Fill out the form:
+   - **Title (Short Code):** Enter your desired folder name (e.g., `test2`).
+   - **Target URL:** Enter the full destination link (e.g., `https://example.com/destination`).
+4. Click **Submit new issue**.
+
+The GitHub Action will automatically run, create the new folder with an `index.html` file, and commit the changes directly to your repository!
