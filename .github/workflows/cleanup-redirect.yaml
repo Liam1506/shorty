@@ -1,0 +1,29 @@
+name: Remove Redirect Page on Issue Close
+
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  remove-redirect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Remove Page
+        run: |
+          python remove_page.py "${{ github.event.issue.title }}"
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Remove redirect page for closed issue #${{ github.event.issue.number }}" || exit 0
+          git push
