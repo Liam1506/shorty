@@ -31,8 +31,8 @@ To create a new short link / redirect page:
 1. Click the **Issues** tab at the top of the repository.
 2. Click **New Issue** (or select the **Create New Short Link** template).
 3. Fill out the form:
-   - **Title (Short Code):** Enter your desired folder name (e.g., `test2`).
-   - **Target URL:** Enter the full destination link (e.g., `https://example.com/destination`).
+   - **Title (Short Code):** Enter your desired short link name (e.g., `example`).
+   - **Target URL:** Enter the full destination link (e.g., `https://example.com/`).
 4. Click **Submit new issue**.
 
 The GitHub Action will automatically run, create the new folder with an `index.html` file, and commit the changes directly to your repository!
