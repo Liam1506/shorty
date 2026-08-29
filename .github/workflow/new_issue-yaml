@@ -1,0 +1,23 @@
+name: Read Issue Data
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  process-issue:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run script with issue data
+        env:
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+        run: python main.py "$ISSUE_TITLE"
