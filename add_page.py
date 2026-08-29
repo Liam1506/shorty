@@ -3,10 +3,6 @@ import re
 from pathlib import Path
 
 def add_page(path: str, target: str):
-    if not path or not target:
-        print("Error: Missing path or target URL.")
-        return
-
     p = Path(path)
     if p.exists():
         print(f"Path '{path}' already exists.")
@@ -25,14 +21,16 @@ def add_page(path: str, target: str):
 
 if __name__ == "__main__":
     if len(sys.argv) >= 3:
-        raw_title = sys.argv[1]
-        raw_body = sys.argv[2]
-        
-        clean_path = "".join(c for c in raw_title if c.isalnum() or c in ("-", "_")).lower()
-        
-        url_match = re.search(r'https?://[^\s<>"]+', raw_body)
-        target_url = url_match.group(0) if url_match else raw_body.strip()
+        body = sys.argv[2]
+        short_code_match = re.search(r"### Short Code\s*\n\s*(\S+)", body)
+        short_code = short_code_match.group(1) if short_code_match else ""
 
-        add_page(clean_path, target_url)
-    else:
-        print("Usage: python addUrl.py <title> <body>")
+        url_match = re.search(r'https?://[^\s<>"]+', body)
+        target_url = url_match.group(0) if url_match else ""
+
+        clean_path = "".join(c for c in short_code if c.isalnum() or c in ("-", "_")).lower()
+
+        if clean_path and target_url:
+            add_page(clean_path, target_url)
+        else:
+            print(f"Error: Missing values. Path: '{clean_path}', Target: '{target_url}'")

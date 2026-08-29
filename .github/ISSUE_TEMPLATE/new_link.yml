@@ -1,15 +1,15 @@
 name: Create New Short Link
 description: Add a new redirect page
-title: "[Link]: "
 labels: ["short-link"]
 body:
   - type: input
     id: short_code
     attributes:
-      label: Short Code (Folder Name)
-      placeholder: "e.g., twitter-promo"
+      label: Short Code
+      placeholder: "e.g., test2"
     validations:
       required: true
+
   - type: input
     id: target_url
     attributes:
