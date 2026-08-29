@@ -8,13 +8,13 @@ def add_page(path: str, target: str):
         print(f"Path '{path}' already exists.")
         return
 
-    with open("index.html", "r") as f:
+    with open("template.html", "r") as f:
         html = f.read()
 
     html = html.replace("{target}", target)
 
     p.mkdir(parents=True, exist_ok=True)
-    file_path = p / "template.html"
+    file_path = p / "index.html"
 
     with open(file_path, "w") as f:
         f.write(html)
